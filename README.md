@@ -3,7 +3,7 @@
 # 폴더
  - shareMate <br>
             - Backend_spring-boot <br>
-              - domain <br>
+              -- domain <br>
               - service <br>
               - web <br>
             - Frontend_react <br>
