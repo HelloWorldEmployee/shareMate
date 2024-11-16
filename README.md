@@ -1,9 +1,6 @@
 # shareMate
 
-<<<<<<< HEAD
-## dependencies : 
-=======
-# 폴더  -> vscode로 file-tree-generater 사용
+## 폴더  -> vscode로 file-tree-generater 사용
  - shareMate <br>
             - Backend_spring-boot <br>
               -- domain <br>
@@ -26,4 +23,3 @@
  - MYSQL Driver
  - PostgreSQL Driver
  - Validation
->>>>>>> f3a9468ea4fad4ca51c0166fd423e7551d75b5c5
