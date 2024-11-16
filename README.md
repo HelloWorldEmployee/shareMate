@@ -2,11 +2,11 @@
 
 # 폴더
  : shareMate
-            - Backend_spring-boot
+            - Backend_spring-boot\n
               - domain
               - service
               - web
-              - 
+              - <br>
             - Frontend_react
 
 ## 스프링부트 설정
