@@ -1,1 +1,1 @@
-# smartTrip
+# shareMate
