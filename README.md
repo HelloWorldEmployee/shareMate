@@ -1,6 +1,6 @@
 # shareMate
 
-# 폴더
+# 폴더  -> vscode로 file-tree-generater 사용
  - shareMate <br>
             - Backend_spring-boot <br>
               -- domain <br>
