@@ -2,6 +2,7 @@ package com.sharemate.webservice.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor //기본생성자 자동생성
 @Data //setter, getter, tostring 등 자동생성
 @Entity
+@Table(name = "user")
 public class UserEntity {
     @Id
     private String user_id;
