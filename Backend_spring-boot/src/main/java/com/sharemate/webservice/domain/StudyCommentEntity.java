@@ -27,7 +27,9 @@ public class StudyCommentEntity {
 
     public int study_id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id") //JPA직접 메소드 만들때는 자동으로 스네이크케이스 인식안함
+                              //(어플리케이션 속성에 DB이름 그대로 쓰겠다는 옵션써도 안됨)
+                              // 지정해줘야됨
     public String userId;
 
 }
