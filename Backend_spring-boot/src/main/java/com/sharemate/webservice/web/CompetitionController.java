@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sharemate.webservice.domain.CompetitionEntity;
 import com.sharemate.webservice.service.CompetitionService;
 
-import io.micrometer.core.ipc.http.HttpSender.Response;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
