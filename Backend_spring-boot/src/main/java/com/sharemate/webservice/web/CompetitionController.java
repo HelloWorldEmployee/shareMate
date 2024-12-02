@@ -26,26 +26,26 @@ public class CompetitionController {
     private final CompetitionService competitionService;
 
     @CrossOrigin // cors 회피
-    @PostMapping("/competition")
+    @PostMapping("/api/competition")
     public ResponseEntity<?> save(@RequestBody CompetitionEntity competition) {
 
         return new ResponseEntity<>(competitionService.competitionCreate(competition), HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @GetMapping("/competition")
+    @GetMapping("/api/competition")
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(competitionService.allList(), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PutMapping("/competition/{compId}")
+    @PutMapping("/api/competition/{compId}")
     public ResponseEntity<?> update(@PathVariable String userId, @RequestBody CompetitionEntity competition) {
         return new ResponseEntity<>(competitionService.competitionUpdate(userId, competition), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @DeleteMapping("/competition/{compId}")
+    @DeleteMapping("/api/competition/{compId}")
     public ResponseEntity<?> delete(@PathVariable int compId) {
         return new ResponseEntity<>(competitionService.competitionDelete(compId), HttpStatus.OK);
     }

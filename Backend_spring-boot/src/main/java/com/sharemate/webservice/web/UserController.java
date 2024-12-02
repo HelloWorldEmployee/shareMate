@@ -18,36 +18,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sharemate.webservice.domain.UserEntity;
 
-
 @RequiredArgsConstructor
 @RestController
 public class UserController {
-    
+
     private final UserService userService;
 
-    @CrossOrigin //cors 회피
-    @PostMapping("/user")
+    @CrossOrigin // cors 회피
+    @PostMapping("/api/user")
     public ResponseEntity<?> save(@RequestBody UserEntity user) {
         return new ResponseEntity<>(userService.userCreate(user), HttpStatus.CREATED);
     }
 
-    @CrossOrigin //cors 회피
-    @GetMapping("/user")
+    @CrossOrigin // cors 회피
+    @GetMapping("/api/user")
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(userService.allRead(), HttpStatus.OK);
     }
 
-    @CrossOrigin //cors 회피
-    @PutMapping("/user/{id}")
+    @CrossOrigin // cors 회피
+    @PutMapping("/api/user/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody UserEntity user) {
         return new ResponseEntity<>(userService.userUpdate(id, user), HttpStatus.OK);
     }
 
-    @CrossOrigin //cors 회피
-    @DeleteMapping("/user/{id}/{password}")
+    @CrossOrigin // cors 회피
+    @DeleteMapping("/api/user/{id}/{password}")
     public ResponseEntity<?> delete(@PathVariable String id, @PathVariable String password) {
         return new ResponseEntity<>(userService.userDelete(id, password), HttpStatus.OK);
     }
-    
-    
+
 }

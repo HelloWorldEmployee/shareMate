@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import CompetitionList from './components/CompetitionList';
+import CompetitionForm from './components/CompetitionForm';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [selectedCompetition, setSelectedCompetition] = useState(null);
+    const [showForm, setShowForm] = useState(false);
+
+    const handleEdit = (competition) => {
+        setSelectedCompetition(competition);
+        setShowForm(true);
+    };
+
+    const handleCloseForm = () => {
+        setSelectedCompetition(null);
+        setShowForm(false);
+    };
+
+    return (
+        <div>
+            <h1>Competition Board</h1>
+            <button onClick={() => { setSelectedCompetition(null); setShowForm(true); }}>Add Competition</button>
+            {showForm && (
+                <CompetitionForm 
+                    selectedCompetition={selectedCompetition} 
+                    onClose={handleCloseForm} 
+                />
+            )}
+            <CompetitionList onEdit={handleEdit} />
+        </div>
+    );
+};
 
 export default App;
+

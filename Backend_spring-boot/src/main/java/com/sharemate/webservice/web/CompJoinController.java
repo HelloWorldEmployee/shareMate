@@ -24,20 +24,20 @@ public class CompJoinController {
     private final CompJoinService compJoinService;
 
     @CrossOrigin // cors 회피
-    @PostMapping("/compJoin")
+    @PostMapping("/api/compJoin")
     public ResponseEntity<?> save(@RequestBody CompJoinEntity compJoin) {
 
         return new ResponseEntity<>(compJoinService.compJoinCreate(compJoin), HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @GetMapping("/compJoin")
+    @GetMapping("/api/compJoin")
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(compJoinService.compJoinSelect(), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @DeleteMapping("/compJoin/{compId}/{userId}")
+    @DeleteMapping("/api/compJoin/{compId}/{userId}")
     public ResponseEntity<?> delete(@PathVariable int joinId, @PathVariable String userId) {
         return new ResponseEntity<>(compJoinService.compJoinDelete(joinId, userId), HttpStatus.OK);
     }
