@@ -19,11 +19,11 @@ public class CompJoinEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "join_id")
-    private int join_id;
+    private int joinId;
 
     @Column(name = "comp_id")
-    private String comp_id;
+    private int compId;
 
     @Column(name = "user_id")
-    private String user_id;
+    private String userId;
 }

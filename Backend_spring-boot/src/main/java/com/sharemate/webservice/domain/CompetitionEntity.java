@@ -20,7 +20,7 @@ public class CompetitionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comp_id")
-    private int comp_id;
+    private int compId;
 
     private String comp_title;
 
@@ -28,7 +28,7 @@ public class CompetitionEntity {
     private String comp_content;
 
     @Column(name = "user_id")
-    private String user_id;
+    private String useId;
 
     private int count;
 }

@@ -36,7 +36,7 @@ public class CompetitionService {
         // .orElseThrow(() -> new IllegalArgumentException("작성한 'id'만 수정 가능합니다."));
         List<CompetitionEntity> competitionList = new ArrayList<>();
         CompetitionEntity compData = competitionList.stream()
-                .filter(c -> c.getUser_id().equals(userId))
+                .filter(c -> c.getUseId().equals(userId))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("작성한 'id'만 수정 가능합니다."));
         compData.setComp_title(competition.getComp_title());
