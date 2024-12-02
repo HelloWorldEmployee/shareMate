@@ -28,7 +28,7 @@ public class CompetitionEntity {
     private String comp_content;
 
     @Column(name = "user_id")
-    private String useId;
-
+    private String userId;
+  
     private int count;
 }
