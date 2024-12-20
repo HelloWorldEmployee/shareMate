@@ -19,6 +19,8 @@ function Navigation() {
               <Nav.Link href="home">홈</Nav.Link>
               <Nav.Link href="#">방 만들기</Nav.Link>
               <Nav.Link href="competition">공모전</Nav.Link>
+              <Nav.Link href="login">로그인</Nav.Link>
+              <Nav.Link href="join">회원가입</Nav.Link>
               <NavDropdown title="마이페이지" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">
                   내 프로필
