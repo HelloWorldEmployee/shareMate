@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { createUser } from "../../Api2/userApi";
+import { createUser } from "../../UserApi";
 const Join = (props) => {
   const [user, setUser] = useState({
     id: "",
