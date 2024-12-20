@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import CompetitionList from "../Components/Competition/CompetitionList";
 import CompetitionForm from "../Components/Competition/CompetitionForm";
-import { fetchCompetitions } from "../api";
+import { fetchCompetitions } from "../Api/api";
 
 function Competition() {
   const [competitions, setCompetitions] = useState([]); // 공모전 목록 상태 추가
   const [selectedCompetition, setSelectedCompetition] = useState(null);
   const [showForm, setShowForm] = useState(false);
-
-  const handleEdit = (competition) => {
-    setSelectedCompetition(competition);
-    setShowForm(true);
-  };
 
   const handleCloseForm = () => {
     setSelectedCompetition(null);
@@ -20,11 +15,16 @@ function Competition() {
 
   const loadCompetitions = async () => {
     const response = await fetchCompetitions();
+    console.log(response);
     setCompetitions(response.data); // API로부터 받은 데이터로 상태 업데이트
   };
   const handleFormSubmit = async () => {
     await loadCompetitions(); // 게시글 추가 후 목록 갱신
     handleCloseForm(); // 폼 닫기
+  };
+  const handleEdit = (competition) => {
+    setSelectedCompetition(competition);
+    setShowForm(true);
   };
 
   return (

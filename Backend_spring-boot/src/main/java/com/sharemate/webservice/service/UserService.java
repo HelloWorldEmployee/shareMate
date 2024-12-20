@@ -18,6 +18,7 @@ public class UserService {
 
     @Transactional //트랜잭션 관리 
     public UserEntity userCreate(UserEntity user) {
+        System.out.println("user : " + user);
         return userRepository.save(user);
     }
 
