@@ -2,8 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:8080/api/user";
 
-export const createUser = (data) => {
-  return axios.post(BASE_URL, data);
+export const createUser = (data1) => {
+  return axios.post(BASE_URL, data1);
 };
 
 export const readUser = () => {
