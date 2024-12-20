@@ -1,6 +1,6 @@
 // src/Components/Competition/CompetitionList.js
 import React, { useEffect, useState } from "react";
-import { fetchCompetitions, deleteCompetition } from "../../api";
+import { fetchCompetitions, deleteCompetition } from "../../Api/api";
 
 const CompetitionList = ({ onEdit }) => {
   const [competitions, setCompetitions] = useState([]);
