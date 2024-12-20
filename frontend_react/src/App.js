@@ -1,36 +1,10 @@
 // src/App.js
-import React, { useState } from 'react';
-import CompetitionList from './components/CompetitionList';
-import CompetitionForm from './components/CompetitionForm';
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-const App = () => {
-    const [selectedCompetition, setSelectedCompetition] = useState(null);
-    const [showForm, setShowForm] = useState(false);
-
-    const handleEdit = (competition) => {
-        setSelectedCompetition(competition);
-        setShowForm(true);
-    };
-
-    const handleCloseForm = () => {
-        setSelectedCompetition(null);
-        setShowForm(false);
-    };
-
-    return (
-        <div>
-            <h1>Competition Board</h1>
-            <button onClick={() => { setSelectedCompetition(null); setShowForm(true); }}>Add Competition</button>
-            {showForm && (
-                <CompetitionForm 
-                    selectedCompetition={selectedCompetition} 
-                    onClose={handleCloseForm} 
-                />
-            )}
-            <CompetitionList onEdit={handleEdit} />
-        </div>
-    );
-};
+function App() {
+  return <h1>App.js 화면</h1>;
+}
 
 export default App;
-
