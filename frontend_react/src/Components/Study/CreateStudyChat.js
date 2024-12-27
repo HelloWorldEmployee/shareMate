@@ -32,7 +32,7 @@ const CreateStudyChat = (props) => {
     <>
       <Form onSubmit={addStudyChat}>
         {/* 채팅방 이름 입력 */}
-        <Form.Group className="mb-3" controlId="formId">
+        <Form.Group className="mb-3" controlId="formName">
           <Form.Label>스터디 이름</Form.Label>
           <Form.Control
             type="text"
@@ -44,7 +44,7 @@ const CreateStudyChat = (props) => {
         </Form.Group>
 
         {/* 내용 입력 */}
-        <Form.Group className="mb-3" controlId="formPassword">
+        <Form.Group className="mb-3" controlId="formContent">
           <Form.Label>내용</Form.Label>
           <Form.Control
             type="text"

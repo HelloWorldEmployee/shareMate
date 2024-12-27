@@ -22,7 +22,7 @@ const ChatCardBox = () => {
 
   const deleteStudyChat = async (studyId, userId) => {
     try {
-      deleteStudy(studyId);
+      deleteStudy(studyId, userId);
       setStudies((prevStudies) =>
         prevStudies.filter((study) => study.studyId !== studyId)
       );
