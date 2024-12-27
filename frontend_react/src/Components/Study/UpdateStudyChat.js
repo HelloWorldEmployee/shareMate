@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { updateStudy } from "../../Api/StudyApi";
 
 const UpdateStudyChat = ({ study }) => {
+  console.log(study);
   const [studyData, setStudyData] = useState({
     id: study.studyId,
     name: study.study_name,
@@ -19,11 +20,20 @@ const UpdateStudyChat = ({ study }) => {
   const fixStudyChat = async (e) => {
     e.preventDefault();
     try {
-      const response = await updateStudy({
-        studyId: studyData.studyId,
-        study_name: studyData.name,
-        study_content: studyData.content,
-      });
+      console.log("업데이트");
+      console.log(studyData);
+      const response = await updateStudy(
+        studyData.id,
+        {
+          study_name: studyData.name,
+          study_content: studyData.content,
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       console.log("업데이트 : " + response.data);
       window.location.href = "/studyBoard";
     } catch (error) {
