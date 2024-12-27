@@ -17,33 +17,39 @@ import com.sharemate.webservice.service.StudyService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class StudyController {
     private final StudyService studyService;
 
     @CrossOrigin
-    @PostMapping("/study")
+    @PostMapping("/api/study")
     public ResponseEntity<?> save(@RequestBody StudyEntity study) {
         return new ResponseEntity<>(studyService.studyCreate(study), HttpStatus.CREATED);
     }
 
     @CrossOrigin
-    @GetMapping("/study")
+    @GetMapping("/api/study")
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(studyService.allRead(), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @PutMapping("/study/{id}")
+    @PutMapping("/api/study/{id}")
     public ResponseEntity<?> update(@PathVariable int id, @RequestBody StudyEntity study) {
         return new ResponseEntity<>(studyService.studyUpdate(id, study), HttpStatus.OK);
     }
 
     @CrossOrigin
-    @DeleteMapping("/study/{id}/{user_id}")
+    @DeleteMapping("/api/study/{id}")
     public ResponseEntity<?> delete(@PathVariable int id, @PathVariable String user_id) {
         return new ResponseEntity<>(studyService.studyDelete(id, user_id), HttpStatus.OK);
     }
+    // @CrossOrigin
+    // @DeleteMapping("/api/study/{id}/{user_id}")
+    // public ResponseEntity<?> delete(@PathVariable int id, @PathVariable String user_id) {
+    //     return new ResponseEntity<>(studyService.studyDelete(id, user_id), HttpStatus.OK);
+    // }
 
 
 
