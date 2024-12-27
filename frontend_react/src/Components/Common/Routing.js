@@ -7,6 +7,7 @@ import Home from "../../Pages/Home.js";
 import Competition from "../../Pages/Competition.js";
 import Login from "../User/Login.js";
 import Join from "../../Components/User/Join.js";
+import StudyBoard from "../../Pages/StudyBoard.js";
 function Routing() {
   return (
     <Switch>
@@ -15,6 +16,7 @@ function Routing() {
       <Route path="/competition" exact component={Competition} />
       <Route path="/login" exact component={Login}></Route>
       <Route path="/join" exact component={Join} />
+      <Route path="/studyBoard" exact component={StudyBoard}></Route>
     </Switch>
   );
 }
