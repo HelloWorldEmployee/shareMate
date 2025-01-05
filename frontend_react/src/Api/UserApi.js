@@ -6,6 +6,17 @@ export const createUser = (data) => {
   return axios.post(BASE_URL, data);
 };
 
+export const checkUserId = (userId) => {
+  return axios.get(`${BASE_URL}/${userId}`);
+};
+
+export const checkLoginUser = (userId, userPassword) => {
+  return axios.post(`${BASE_URL}/login`, {
+    user_id: userId,
+    user_password: userPassword,
+  });
+};
+
 export const readUser = () => {
   return axios.get(BASE_URL);
 };

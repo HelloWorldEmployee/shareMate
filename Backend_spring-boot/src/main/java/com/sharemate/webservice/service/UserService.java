@@ -2,6 +2,7 @@ package com.sharemate.webservice.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,16 +11,24 @@ import com.sharemate.webservice.domain.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor //final 생성자 자동생성
+@RequiredArgsConstructor //final 생성자 자동생성 -> autowired 필요없음
 @Service
 public class UserService {
     
     private final UserRepository userRepository;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Transactional //트랜잭션 관리 
     public UserEntity userCreate(UserEntity user) {
         System.out.println("user : " + user);
+        user.setUser_password(bCryptPasswordEncoder.encode(user.getUser_password()));
         return userRepository.save(user);
+    }
+
+    @Transactional(readOnly = true) 
+    public boolean checkUserIdExists(String userId) {
+        return userRepository.existsById(userId);
     }
 
     @Transactional(readOnly=true)
@@ -27,7 +36,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    @Transactional
+    @Transactional //업데이트로 Role규정 
     public UserEntity userUpdate(String id, UserEntity user) {
         //더티채킹
         UserEntity userData = userRepository.findById(id)
