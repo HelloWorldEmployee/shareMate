@@ -1,4 +1,4 @@
-package com.sharemate.webservice.config_temp;
+package com.sharemate.webservice.config;
 
 import java.util.Collection;
 import java.util.Iterator;
