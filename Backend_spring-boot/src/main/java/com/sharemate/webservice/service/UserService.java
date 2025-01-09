@@ -22,7 +22,7 @@ public class UserService {
     @Transactional //트랜잭션 관리 
     public UserEntity userCreate(UserEntity user) {
         System.out.println("user : " + user);
-        user.setUser_password(bCryptPasswordEncoder.encode(user.getUser_password()));
+        user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
         return userRepository.save(user);
     }
 
@@ -41,8 +41,8 @@ public class UserService {
         //더티채킹
         UserEntity userData = userRepository.findById(id)
             .orElseThrow(()->new IllegalArgumentException("'id'를 확인해주세요!"));
-        userData.setUser_email(user.getUser_email());
-        userData.setUser_email(user.getUser_email());
+        userData.setUserEmail(user.getUserEmail());
+        // userData.setUserEmail(user.getUserEmail());
 
         return userData;
     }

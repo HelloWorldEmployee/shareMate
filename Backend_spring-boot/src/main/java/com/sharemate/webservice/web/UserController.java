@@ -42,11 +42,11 @@ public class UserController {
         return ResponseEntity.ok("사용 가능한 아이디 입니다.");
     }
 
-    @PostMapping("/api/user/login")
-    public ResponseEntity<?> login(@RequestBody UserEntity userEntity) {
-        
-        return ResponseEntity.ok("로그인 성공");
-    }
+    // @PostMapping("/api/user/login")
+    // public ResponseEntity<?> login(@RequestBody UserEntity userEntity) {
+    //     System.out.println("로그인 : " + userEntity);
+    //     return ResponseEntity.ok("로그인 성공");
+    // }
     
     @CrossOrigin // cors 회피
     @GetMapping("/api/user")
