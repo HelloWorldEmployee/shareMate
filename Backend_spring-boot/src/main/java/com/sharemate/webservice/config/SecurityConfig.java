@@ -1,17 +1,38 @@
 package com.sharemate.webservice.config;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+        // AuthenticationManager가 인자로 받을 AuthenticationConfiguration 객체 생성자 주입
+        private final AuthenticationConfiguration authenticationConfiguration;
+        private final JWTUtil jwtUtil;
+
+        public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil) {
+                this.authenticationConfiguration = authenticationConfiguration;
+                this.jwtUtil = jwtUtil;
+        }
+
+        // AuthenticationManager Bean 등록
+        @Bean
+        public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+                return configuration.getAuthenticationManager();
+        }
 
         // 비밀번호를 캐시로 암호화
         @Bean
@@ -20,6 +41,7 @@ public class SecurityConfig {
                 return new BCryptPasswordEncoder();
         }
 
+        // LoginFilter 객체에 주입
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -38,9 +60,16 @@ public class SecurityConfig {
 
                 // 경로별 인가 작업
                 http.authorizeHttpRequests((auth) -> auth
-                                .requestMatchers("/Api/User/login", "/", "/join").permitAll()
+                                .requestMatchers("/login", "/", "/join").permitAll()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated());
+
+                http
+                                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+                http
+                                .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),
+                                                jwtUtil),
+                                                UsernamePasswordAuthenticationFilter.class);
 
                 // 세션 설정(jwt로 로그인)
                 http
@@ -51,9 +80,12 @@ public class SecurityConfig {
                                 .cors(cors -> cors.configurationSource(request -> {
                                         CorsConfiguration config = new CorsConfiguration();
                                         config.setAllowCredentials(true);
-                                        config.addAllowedOrigin("*");
+                                        config.addAllowedOrigin("http://localhost:3000");
                                         config.addAllowedHeader("*");
                                         config.addAllowedMethod("*");
+                                        config.setExposedHeaders(Collections.singletonList("Authorization"));
+                                        config.setMaxAge(3600L);
+
                                         return config;
                                 }));
 

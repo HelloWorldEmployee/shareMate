@@ -20,7 +20,7 @@ public class JoinService {
 
     public boolean joinProcess(UserEntity userEntity) {
         String user_id = userEntity.getUserId();
-        String user_name = userEntity.getUser_name();
+        String user_name = userEntity.getUserName();
         String password = userEntity.getUser_password();
         String user_email = userEntity.getUser_email();
 
@@ -31,7 +31,7 @@ public class JoinService {
 
         UserEntity data = new UserEntity();
         data.setUserId(user_id);
-        data.setUser_name(user_name);
+        data.setUserName(user_name);
         // PW는 암호화하여 사용.
         data.setUser_password(bCryptPasswordEncoder.encode(password));
         data.setUser_email(user_email);
