@@ -1,4 +1,4 @@
-package com.sharemate.webservice.config;
+package com.sharemate.webservice.Confi;
 
 import java.io.IOException;
 
