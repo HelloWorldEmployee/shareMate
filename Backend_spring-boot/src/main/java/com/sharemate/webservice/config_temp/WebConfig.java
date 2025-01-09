@@ -1,4 +1,4 @@
-package com.sharemate.webservice.Confi;
+package com.sharemate.webservice.config_temp;
 // package com.sharemate.webservice.Config;
 
 // import org.springframework.context.annotation.Configuration;
