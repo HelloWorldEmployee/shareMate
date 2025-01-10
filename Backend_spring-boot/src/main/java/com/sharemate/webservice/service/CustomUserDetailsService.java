@@ -9,6 +9,7 @@ import com.sharemate.webservice.domain.CustomUserDetails;
 import com.sharemate.webservice.domain.UserEntity;
 import com.sharemate.webservice.domain.UserRepository;
 
+//@RequiredArgsConstructor
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -18,37 +19,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public UserDetails findUserByUserId(String userId) throws UsernameNotFoundException {
-
-        UserEntity userData = userRepository.findByUserId(userId);
-
-        if (userData != null) {
-
-            // UserDetails에 담아서 AuthenticationManager가 검증함
-            return new CustomUserDetails(userData);
-        }
-
-        return null;
-    }
-
     @Override
     public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
 
-        UserEntity userData = userRepository.findByUserId(userId); // userId로 사용자를 찾음
+        UserEntity user = userRepository.findByUserId(userId); // userId로 사용자를 찾음
+        System.out.println("유저 아이디 찾기 메소드 실행 !!!!!!!!!!! " + userId + " / " + user);
 
-        if (userData != null) {
-            return new CustomUserDetails(userData);
+        if (user != null) {
+            System.out.println("커스텀유저서비스 유저 받기 실행 성공!! " + user);
+            // UserDetails에 담아서 AuthenticationManager가 검증함
+            return new CustomUserDetails(user);
         }
 
-        throw new UsernameNotFoundException("User not found with ID: " + userId);
-        // UserEntity userData = userRepository.findByUserName(userName);
-
-        // if (userData != null) {
-
-        // UserDetails에 담아서 AuthenticationManager가 검증함
-        // return new CustomUserDetails(userData);
-        // }
-
-        // return null;
+        throw new UsernameNotFoundException("유저 아이디 찾기 실패 " + userId);
     }
 }

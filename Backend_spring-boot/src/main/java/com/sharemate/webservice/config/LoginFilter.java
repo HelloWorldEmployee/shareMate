@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sharemate.webservice.domain.CustomUserDetails;
@@ -27,6 +28,9 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
                 this.authenticationManager = authenticationManager;
                 this.jwtUtil = jwtUtil;
+
+                // 로그인 url 특정
+                setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/user/login", "POST"));
         }
 
         @Override
@@ -42,10 +46,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                         String userId = user.getUserId();
                         System.out.println("userId : " + userId);
 
-                        // String userName = obtainUsername(request);
-                        // System.out.println("userName : " + userName);
-
-                        String userPassword = user.getUser_password();
+                        String userPassword = user.getUserPassword();
                         System.out.println("userPassword : " + userPassword);
 
                         // 스프링 시큐리티에서 userId, userPassword를 검증하기 위해서는 token에 담아야함.
@@ -56,7 +57,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                         // token에 담은 검증을 위한 AuthenticationManager로 전달
                         return authenticationManager.authenticate(authToken);
                 } catch (IOException e) {
-                        throw new RuntimeException("Failed to parse request body", e);
+                        throw new RuntimeException("error : " + e.getMessage());
                 }
         }
 
@@ -66,7 +67,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                         FilterChain chain,
                         Authentication authentication) {
 
-                // UserDetailsS
                 CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
 
                 String userId = customUserDetails.getUserId();

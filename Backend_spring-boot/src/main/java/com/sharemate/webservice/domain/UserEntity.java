@@ -18,12 +18,15 @@ public class UserEntity {
     @Column(name = "user_id")
     private String userId;
 
-    private String user_password;
+    @Column(name = "user_password")
+    private String userPassword;
 
     @Column(name = "user_name")
     public String userName;
 
-    public String user_email;
+    @Column(name = "user_email")
+    public String userEmail;
 
-    private String user_role;
+    @Column(name = "user_role")
+    private String userRole;
 }

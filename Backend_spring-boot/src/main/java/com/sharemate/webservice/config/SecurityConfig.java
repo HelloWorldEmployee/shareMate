@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,6 +24,7 @@ public class SecurityConfig {
         private final AuthenticationConfiguration authenticationConfiguration;
         private final JWTUtil jwtUtil;
 
+        // AuthenticationManger가 인자로 받을 AuthenticationConfiguration 객체 생성자 주입
         public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil) {
                 this.authenticationConfiguration = authenticationConfiguration;
                 this.jwtUtil = jwtUtil;
@@ -45,7 +47,7 @@ public class SecurityConfig {
         @Bean
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-                // csrf diable - 세션에서 항상 세션 고정으로 csrf 공격을 필수적으로 방어, JWT는 stateless 상태로 관리함으로
+                // csrf disable - 세션에서 항상 세션 고정으로 csrf 공격을 필수적으로 방어, JWT는 stateless 상태로 관리함으로
                 // csrf 공격을 방어하지 않아 기본 상태로 설정(disable)
                 http
                                 .csrf((auth) -> auth.disable());
@@ -60,22 +62,24 @@ public class SecurityConfig {
 
                 // 경로별 인가 작업
                 http.authorizeHttpRequests((auth) -> auth
-                                .requestMatchers("/login", "/", "/join").permitAll()
-                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers("/api/user/login", "/", "/api/user").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
+                                .requestMatchers("/api/competition").hasRole("ADMIN")
+                                // .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated());
-
+                // JWT FIlter
                 http
                                 .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+                // 커스텀 로그인 필터
                 http
                                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),
                                                 jwtUtil),
                                                 UsernamePasswordAuthenticationFilter.class);
-
                 // 세션 설정(jwt로 로그인)
                 http
                                 .sessionManagement((session) -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
+                // cors 설정
                 http
                                 .cors(cors -> cors.configurationSource(request -> {
                                         CorsConfiguration config = new CorsConfiguration();
