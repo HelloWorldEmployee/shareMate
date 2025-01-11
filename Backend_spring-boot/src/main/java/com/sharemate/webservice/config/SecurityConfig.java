@@ -1,6 +1,5 @@
 package com.sharemate.webservice.config;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
@@ -62,11 +61,16 @@ public class SecurityConfig {
 
                 // 경로별 인가 작업
                 http.authorizeHttpRequests((auth) -> auth
-                                .requestMatchers("/api/user/login", "/", "/api/user").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
-                                .requestMatchers("/api/competition").hasRole("ADMIN")
+                                .requestMatchers("/api/user/login", "/", "/api/user",
+                                                "/api/user/{userId}", "/api/user/{userId}/{userPassword}")
+                                .permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
+                                .requestMatchers(HttpMethod.POST, "/api/competition").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/api/competition/{compId}").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/api/competition/{compId}").hasRole("ADMIN")
                                 // .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().authenticated());
+
                 // JWT FIlter
                 http
                                 .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);

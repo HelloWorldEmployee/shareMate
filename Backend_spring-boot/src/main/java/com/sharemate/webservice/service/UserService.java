@@ -44,7 +44,15 @@ public class UserService {
         // 더티채킹
         UserEntity userData = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("'id'를 확인해주세요!"));
-        userData.setUserEmail(user.getUserEmail());
+        if (user.getUserName() != null && !user.getUserName().isEmpty()) {
+            userData.setUserName(user.getUserName());
+        }
+        if (user.getUserEmail() != null && !user.getUserEmail().isEmpty()) {
+            userData.setUserEmail(user.getUserEmail());
+        }
+        if (user.getUserRole() != null && !user.getUserRole().isEmpty()) {
+            userData.setUserRole(user.getUserRole());
+        }
 
         return userData;
     }

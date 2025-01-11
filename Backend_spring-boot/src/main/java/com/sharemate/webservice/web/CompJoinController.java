@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sharemate.webservice.domain.CompJoinEntity;
@@ -18,26 +19,25 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api/compJoin") // 공통 경로 설정
+@CrossOrigin // cors 회피
 public class CompJoinController {
 
     @Autowired
     private final CompJoinService compJoinService;
 
-    @CrossOrigin // cors 회피
-    @PostMapping("/api/compJoin")
+    @PostMapping
     public ResponseEntity<?> save(@RequestBody CompJoinEntity compJoin) {
 
         return new ResponseEntity<>(compJoinService.compJoinCreate(compJoin), HttpStatus.CREATED);
     }
 
-    @CrossOrigin
-    @GetMapping("/api/compJoin")
+    @GetMapping
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(compJoinService.compJoinSelect(), HttpStatus.OK);
     }
 
-    @CrossOrigin
-    @DeleteMapping("/api/compJoin/{compId}/{userId}")
+    @DeleteMapping("/{compId}/{userId}")
     public ResponseEntity<?> delete(@PathVariable int joinId, @PathVariable String userId) {
         return new ResponseEntity<>(compJoinService.compJoinDelete(joinId, userId), HttpStatus.OK);
     }
