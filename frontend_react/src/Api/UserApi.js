@@ -3,6 +3,7 @@ import axios from "axios";
 const BASE_URL = "http://localhost:8080/api/user";
 
 export const createUser = (data) => {
+  console.log("api실행 성공!!");
   return axios.post(BASE_URL, data);
 };
 
@@ -11,10 +12,10 @@ export const checkUserId = (userId) => {
 };
 
 export const checkLoginUser = (userId, userPassword) => {
-  return axios.post(`${BASE_URL}/login`, {
-    user_id: userId,
-    user_password: userPassword,
-  });
+  const formData = new FormData();
+  formData.append("userId", userId);
+  formData.append("userPassword", userPassword);
+  return axios.post(`${BASE_URL}/login`, formData);
 };
 
 export const readUser = () => {

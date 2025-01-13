@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { createUser } from "../../UserApi";
-import { checkUserId } from "../../Api/UserApi";
+import { createUser, checkUserId } from "../../Api/UserApi";
 const Join = (props) => {
   const [user, setUser] = useState({
     id: "",
@@ -50,7 +49,7 @@ const Join = (props) => {
       };
       console.log(userData);
       await createUser(userData);
-      props.history.push("/");
+      // props.history.push("/");
     } catch (error) {
       console.log(user);
       console.log(error);

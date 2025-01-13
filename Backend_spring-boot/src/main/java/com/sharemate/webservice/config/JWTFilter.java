@@ -15,8 +15,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class JWTFilter extends OncePerRequestFilter{
-    
+public class JWTFilter extends OncePerRequestFilter {
+
     private final JWTUtill jwtUtill;
 
     public JWTFilter(JWTUtill jwtUtill) {
@@ -34,14 +34,14 @@ public class JWTFilter extends OncePerRequestFilter{
         }
 
         System.out.println("authorization now");
-        
+
         String token = authorization.split(" ")[1];
         System.out.println("token : " + token);
 
-        if(jwtUtill.isExpired(token)) {
+        if (jwtUtill.isExpired(token)) {
             System.out.println("token expired");
             filterChain.doFilter(request, response);
-            return; 
+            return;
         }
 
         String userId = jwtUtill.getUserId(token);

@@ -1,7 +1,9 @@
 package com.sharemate.webservice.web;
 
+import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,7 @@ public class UserController {
     @CrossOrigin // cors 회피
     @PostMapping("/api/user")
     public ResponseEntity<?> save(@RequestBody UserEntity user) {
+        System.out.println("회원가입 api 불러오기 성공!");
         return new ResponseEntity<>(userService.userCreate(user), HttpStatus.CREATED);
     }
 
@@ -47,7 +50,6 @@ public class UserController {
     //     System.out.println("로그인 : " + userEntity);
     //     return ResponseEntity.ok("로그인 성공");
     // }
-    
     @CrossOrigin // cors 회피
     @GetMapping("/api/user")
     public ResponseEntity<?> findAll() {
@@ -60,9 +62,11 @@ public class UserController {
         return new ResponseEntity<>(userService.userUpdate(id, user), HttpStatus.OK);
     }
 
-    @CrossOrigin // cors 회피
+    // @CrossOrigin // cors 회피
     @DeleteMapping("/api/user/{id}/{password}")
     public ResponseEntity<?> delete(@PathVariable String id, @PathVariable String password) {
+        String currentId = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println("아이디 : " + currentId);
         return new ResponseEntity<>(userService.userDelete(id, password), HttpStatus.OK);
     }
 

@@ -17,8 +17,15 @@ const Login = (props) => {
   const loginUser = async (e) => {
     e.preventDefault();
     try {
+      console.log("로그인정보 : ", user.id, user.password);
       const response = await checkLoginUser(user.id, user.password);
-    } catch (error) {}
+      const token = response.headers["authorization"].replace("Bearer ", "");
+      console.log("로그인성공", token);
+      localStorage.setItem("token", token);
+      props.history.push("/studyBoard");
+    } catch (error) {
+      console.log("로그인 실패 : ", error);
+    }
   };
 
   return (

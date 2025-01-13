@@ -9,7 +9,16 @@ const ChatCardBox = () => {
 
   const readStudyChatRoom = async () => {
     try {
-      const response = await readStudy();
+      const token = localStorage.getItem("token");
+      console.log("토큰 : ", token);
+      const headers = {
+        Authorization: `Bearer ${token}`,
+      };
+      console.log("토큰header: ", headers);
+      const response = await readStudy({
+        headers,
+        withCredentials: true,
+      });
       setStudies(response.data);
       console.log(response.data);
     } catch (error) {
