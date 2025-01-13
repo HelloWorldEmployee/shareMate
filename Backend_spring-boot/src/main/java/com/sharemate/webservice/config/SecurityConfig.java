@@ -65,10 +65,13 @@ public class SecurityConfig {
                                                 "/api/user/{userId}", "/api/user/{userId}/{userPassword}")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
+
                                 .requestMatchers(HttpMethod.POST, "/api/competition").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/api/competition/{compId}").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE, "/api/competition/{compId}").hasRole("ADMIN")
-                                // .requestMatchers("/admin").hasRole("ADMIN")
+
+                                .requestMatchers(HttpMethod.POST, "/api/compJoin/{compId}").hasRole("USER")
+                                .requestMatchers(HttpMethod.DELETE, "/api/compJoin/{compId}/{userId}").hasRole("USER")
                                 .anyRequest().authenticated());
 
                 // JWT FIlter

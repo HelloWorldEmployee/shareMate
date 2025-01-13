@@ -24,7 +24,7 @@ public class CompetitionService {
     @Autowired
     private final CompetitionRepository competitionRespository;
 
-    // Authentication 객체를 사용하여 필요한 작업 수행
+    // Authentication 객체를 사용하여 userId 추출
     private String authUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
