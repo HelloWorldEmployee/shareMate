@@ -7,8 +7,9 @@ export const createStudy = (data) => {
   return axios.post(BASE_URL, data);
 };
 
-export const readStudy = () => {
-  return axios.get(BASE_URL);
+export const readStudy = (headers) => {
+  console.log("채팅방리스트읽기 api!");
+  return axios.get(BASE_URL, headers);
 };
 
 export const updateStudy = (StudyId, data) => {

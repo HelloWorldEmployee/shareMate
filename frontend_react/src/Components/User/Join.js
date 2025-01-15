@@ -42,10 +42,10 @@ const Join = (props) => {
     }
     try {
       const userData = {
-        user_id: user.id,
-        user_password: user.password,
-        user_name: user.name || "홍길동",
-        user_email: user.email || "default@example.com",
+        userId: user.id,
+        userPassword: user.password,
+        userName: user.name || "홍길동",
+        userEmail: user.email || "default@example.com",
       };
       console.log(userData);
       await createUser(userData);

@@ -19,6 +19,11 @@ const ChatCardBox = () => {
         headers,
         withCredentials: true,
       });
+      // const response = await readStudy({
+      //   headers: {
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // });
       setStudies(response.data);
       console.log(response.data);
     } catch (error) {

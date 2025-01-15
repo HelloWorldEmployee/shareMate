@@ -78,10 +78,9 @@ public class SecurityConfig {
         //경로 인가 작업
         http
                 .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/api/user/login", "/", "/api/user", "/api/user/{id}").permitAll()
+                .requestMatchers("/api/user/login", "/", "/api/user/{id}").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/study").hasRole("USER") //이면 접두사 Role_ 필요
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-        
                 .anyRequest().authenticated()
         );
         //JWT FIlter
