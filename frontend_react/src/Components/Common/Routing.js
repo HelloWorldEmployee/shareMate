@@ -1,12 +1,13 @@
-// src/Components/Common/Routing.js
+// src/components/common/Routing.js
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "../../App.js";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
-import Home from "../../Pages/Home.js";
-import Competition from "../../Pages/Competition.js";
-import Login from "../User/Login.js";
-import Join from "../../Components/User/Join.js";
+import Home from "../../pages/Home.js";
+import Competition from "../../pages/Competition.js";
+import Join from "../user/Join.js";
+import Login from "../user/Login.js";
+
 function Routing() {
   return (
     <Switch>

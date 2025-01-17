@@ -20,6 +20,7 @@ import com.sharemate.webservice.domain.UserEntity;
 import com.sharemate.webservice.domain.UserRepository;
 
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000") // cors 회피
 @RestController
 public class UserController {
 
@@ -27,7 +28,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-    @CrossOrigin // cors 회피
+
     @PostMapping("/api/user")
     public ResponseEntity<?> save(@RequestBody UserEntity user) {
         Boolean isExistId = userRepository.existsById(user.getUserId());
@@ -42,7 +43,6 @@ public class UserController {
     }
 
     // 아이디 중복확인
-    @CrossOrigin
     @GetMapping("/api/user/{id}")
     public ResponseEntity<?> checkUserId(@PathVariable String id) {
         boolean isExist = userService.checkUserIdExists(id);
@@ -60,21 +60,18 @@ public class UserController {
     // }
 
     // 계정 전체조회
-    @CrossOrigin // cors 회피
     @GetMapping("/api/user")
     public ResponseEntity<?> findAll() {
         return new ResponseEntity<>(userService.allRead(), HttpStatus.OK);
     }
 
     // 계정 수정
-    @CrossOrigin // cors 회피
     @PutMapping("/api/user/{id}")
     public ResponseEntity<?> update(@PathVariable String id, @RequestBody UserEntity user) {
         return new ResponseEntity<>(userService.userUpdate(id, user), HttpStatus.OK);
     }
 
     // 계정 삭제
-    @CrossOrigin // cors 회피
     @DeleteMapping("/api/user/{id}/{password}")
     public ResponseEntity<?> delete(@PathVariable String id, @PathVariable String password) {
         return new ResponseEntity<>(userService.userDelete(id, password), HttpStatus.OK);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { createUser } from "../../UserApi";
+import { createUser, checkUserId } from "../../api/UserApi";
 const Join = (props) => {
   const [user, setUser] = useState({
     id: "",
@@ -9,6 +9,8 @@ const Join = (props) => {
     name: "",
   });
 
+  const [isUserIdValid, setIsUserIdValid] = useState(false);
+
   const changeValue = (e) => {
     setUser({
       ...user,
@@ -16,18 +18,38 @@ const Join = (props) => {
     });
   };
 
+  const checkUser = async (userId) => {
+    try {
+      const response = await checkUserId(userId);
+      if (response.status === 200) {
+        setIsUserIdValid(true);
+        alert(response.data);
+      } else {
+        alert(response.data);
+      }
+    } catch (error) {
+      alert(error.response.data);
+    }
+  };
+
   const joinUser = async (e) => {
     e.preventDefault();
+    console.log("회원가입!!", isUserIdValid);
+    if (!isUserIdValid) {
+      alert("아이디 중복체크를 해주세요.");
+      console.log("중복체크!!");
+      return;
+    }
     try {
       const userData = {
-        user_id: user.id,
-        user_password: user.password,
-        user_name: user.name || "홍길동",
-        user_email: user.email || "default@example.com",
+        userId: user.id,
+        userPassword: user.password,
+        userName: user.name || "홍길동",
+        userEmail: user.email || "default@example.com",
       };
       console.log(userData);
       await createUser(userData);
-      props.history.push("/");
+      // props.history.push("/");
     } catch (error) {
       console.log(user);
       console.log(error);
@@ -48,6 +70,13 @@ const Join = (props) => {
             onChange={changeValue}
             required
           />
+          <Button
+            variant="outline-secondary"
+            onClick={() => checkUser(user.id)}
+          >
+            아이디 중복 체크
+          </Button>
+          {/* {isUserIdValid && <p style={{color : "red"}}>이미 존재하는 아이디 입니다.</p>} */}
         </Form.Group>
 
         {/* 비밀번호 입력 */}

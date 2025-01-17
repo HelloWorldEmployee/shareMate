@@ -38,16 +38,18 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
                         throws AuthenticationException {
 
                 try {
-                        // JSON 요청 본문을 파싱(Postman 요청 본문에서 JSON 데이터를 직접 파싱)
-                        ObjectMapper objectMapper = new ObjectMapper();
-                        UserEntity user = objectMapper.readValue(request.getInputStream(), UserEntity.class);
+                        // // JSON 요청 본문을 파싱(Postman 요청 본문에서 JSON 데이터를 직접 파싱)
+                        // ObjectMapper objectMapper = new ObjectMapper();
+                        // UserEntity user = objectMapper.readValue(request.getInputStream(),
+                        // UserEntity.class);
 
                         // 클라이언트 요청에서 username, password 추출
-                        String userId = user.getUserId();
-                        System.out.println("userId : " + userId);
-
-                        String userPassword = user.getUserPassword();
-                        System.out.println("userPassword : " + userPassword);
+                        // String userId = user.getUserId();
+                        // System.out.println("userId : " + userId);
+                        // String userPassword = user.getUserPassword();
+                        // System.out.println("userPassword : " + userPassword);
+                        String userId = request.getParameter("userId");
+                        String userPassword = request.getParameter("userPassword");
 
                         // 스프링 시큐리티에서 userId, userPassword를 검증하기 위해서는 token에 담아야함.
                         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId,
@@ -56,9 +58,13 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
                         // token에 담은 검증을 위한 AuthenticationManager로 전달
                         return authenticationManager.authenticate(authToken);
-                } catch (IOException e) {
-                        throw new RuntimeException("error : " + e.getMessage());
+                } catch (Exception e) {
+                        System.out.println("error : " + e.getMessage());
+                        throw e;
                 }
+                // } catch (IOException e) {
+                // throw new RuntimeException("error : " + e.getMessage());
+                // }
         }
 
         // 로그인 성공시 실행(JWT발급 하는 곳)
