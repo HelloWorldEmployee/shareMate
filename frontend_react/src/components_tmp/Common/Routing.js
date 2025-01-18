@@ -6,7 +6,7 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Home from "../../Pages/Home.js";
 import Competition from "../../Pages/Competition.js";
 import Login from "../User/Login.js";
-import Join from "../../Components/User/Join.js";
+import Join from "../User/Join.js";
 import StudyBoard from "../../Pages/StudyBoard.js";
 function Routing() {
   return (

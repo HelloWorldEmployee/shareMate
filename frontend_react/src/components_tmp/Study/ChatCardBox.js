@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Button, ButtonGroup } from "react-bootstrap";
-import { deleteStudy, readStudy } from "../../Api/StudyApi";
+import { deleteStudy, readStudy } from "../../api/StudyApi";
 import UpdateStudyChat from "./UpdateStudyChat";
 
 const ChatCardBox = () => {
@@ -9,17 +9,17 @@ const ChatCardBox = () => {
 
   const readStudyChatRoom = async () => {
     try {
-      const token = localStorage.getItem("token");
-      console.log("토큰 : ", token);
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-      console.log("토큰header: ", headers);
-      const response = await readStudy({
-        headers,
-        withCredentials: true,
-      });
+      // const token = localStorage.getItem("token");
+      // console.log("토큰 : ", token);
+      // const headers = {
+      //   Authorization: `Bearer ${token}`,
+      // };
+      // console.log("토큰header: ", headers);
       // const response = await readStudy({
+        // headers,
+        // withCredentials: true,
+      // });
+      const response = await readStudy();
       //   headers: {
       //     Authorization: `Bearer ${token}`,
       //   },

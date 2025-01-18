@@ -17,7 +17,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class LoginFilter extends UsernamePasswordAuthenticationFilter{
+public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final JWTUtill jwtUtill;
@@ -34,23 +34,22 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter{
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-        // String userId = obtainUsername(request);
-        // String userPassword = obtainPassword(request);
-        String userId = request.getParameter("userId");
-        String userPassword = request.getParameter("userPassword");
-            
-        // System.out.println("LoginFilter!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + " / " + request.getParameter("userId") + " / " + userId + " / " + userPassword);
+            // String userId = obtainUsername(request);
+            // String userPassword = obtainPassword(request);
+            String userId = request.getParameter("userId");
+            String userPassword = request.getParameter("userPassword");
 
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId, userPassword, null);
+            // System.out.println("LoginFilter!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + " / " + request.getParameter("userId") + " / " + userId + " / " + userPassword);
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userId, userPassword, null);
 
-        return authenticationManager.authenticate(authToken);
+            return authenticationManager.authenticate(authToken);
         } catch (Exception e) {
             System.out.println("error : " + e.getMessage());
             throw e;
         }
 
     }
-    
+
     //로그인 성공시 실행(JWT발급 하는 곳)
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) {
@@ -63,8 +62,8 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter{
         GrantedAuthority auth = iterator.next();
 
         String userRole = auth.getAuthority();
-        
-        String token = jwtUtill.createJwt(userId, userRole, 60*60*10L);
+
+        String token = jwtUtill.createJwt(userId, userRole, 60 * 60 * 10L);
 
         response.addHeader("Authorization", "Bearer " + token);
 
@@ -75,6 +74,6 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter{
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) {
         System.out.println("Fail");
-        response.setStatus(401);    
+        response.setStatus(401);
     }
 }

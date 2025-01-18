@@ -79,10 +79,11 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                 .requestMatchers("/api/user/login", "/", "/api/user/{id}").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/study").hasRole("USER") //이면 접두사 Role_ 필요
+                .requestMatchers("/api/study").hasRole("USER") //이면 접두사 Role_ 필요
+                .requestMatchers("/api/competition").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
                 .anyRequest().authenticated()
-        );
+                );
         //JWT FIlter
         http
                 .addFilterBefore(new JWTFilter(jwtUtill), LoginFilter.class);

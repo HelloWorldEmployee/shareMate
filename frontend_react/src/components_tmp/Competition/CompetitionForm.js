@@ -1,6 +1,6 @@
 // src/Components/Competition/CompetitionForm.js
 import React, { useEffect, useState } from "react";
-import { createCompetition, updateCompetition } from "../../Api/api";
+import { createCompetition, updateCompetition } from "../../api/api";
 
 const CompetitionForm = ({ selectedCompetition, onClose, onSubmit }) => {
   const [title, setTitle] = useState(""); // compTitle을을 위한 상태 추가

@@ -1,23 +1,24 @@
 import axios from "axios";
+import { competitionApi } from "./ApiInterceptor";
 
-const BASE_URL = "http://localhost:8080/api/competition"; // 백엔드 API URL
+// const BASE_URL = "http://localhost:8080/api/competition"; // 백엔드 API URL
 
 export const fetchCompetitions = () => {
-  return axios.get(BASE_URL);
+  return competitionApi.get("");
 };
 
 export const fetchCompetitionByCompId = (compId) => {
-  return axios.get(`${BASE_URL}/${compId}`);
+  return competitionApi.get(`/${compId}`);
 };
 
 export const createCompetition = (data) => {
-  return axios.post(BASE_URL, data);
+  return competitionApi.post("", data);
 };
 
 export const updateCompetition = (compId, data) => {
-  return axios.put(`${BASE_URL}/${compId}`, data);
+  return competitionApi.put(`/${compId}`, data);
 };
 
 export const deleteCompetition = (compId) => {
-  return axios.delete(`${BASE_URL}/${compId}`);
+  return competitionApi.delete(`/${compId}`);
 };

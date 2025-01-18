@@ -4,8 +4,8 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Navigation from "./Components/Common/Navigation";
-import Routing from "./Components/Common/Routing";
+import Navigation from "./components_tmp/Common/Navigation";
+import Routing from "./components_tmp/Common/Routing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
