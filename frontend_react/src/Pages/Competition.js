@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import CompetitionList from "../components/Competition/CompetitionList";
-import CompetitionForm from "../components/Competition/CompetitionForm";
+import CompetitionList from "../components/competition/CompetitionList";
+import CompetitionForm from "../components/competition/CompetitionForm";
 import { fetchCompetitions } from "../api/api";
 
 function Competition() {
