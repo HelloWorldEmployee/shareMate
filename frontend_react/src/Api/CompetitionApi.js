@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:8080/api/competition"; // 백엔드 API URL
 
 //JWT 토큰을 가져오는 함수
 const getToken = () => {
-  return localStorage.getItem("jwt"); //로컬 스토리지에서 JWT 토큰 가져오기
+  return localStorage.getItem("token"); //로컬 스토리지에서 JWT 토큰 가져오기
 };
 
 export const fetchCompetitions = () => {
@@ -27,11 +27,11 @@ export const fetchCompetitionByCompId = (compId) => {
 
 export const createCompetition = (data) => {
   return axios.post(BASE_URL, data);
-  //, {
-  //headers: {
-  //  Authorization: `Bearer ${getToken()}`,
-  //},
-  //});
+  //   , {
+  //   headers: {
+  //     Authorization: `Bearer ${getToken()}`,
+  //   },
+  // });
 };
 
 export const updateCompetition = (compId, data) => {

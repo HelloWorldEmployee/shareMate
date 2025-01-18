@@ -63,7 +63,7 @@ public class SecurityConfig {
                 http.authorizeHttpRequests((auth) -> auth
                                 .requestMatchers("/api/user/login", "/", "/api/user",
                                                 "/api/user/{userId}", "/api/user/{userId}/{userPassword}",
-                                                "/api/competition")
+                                                "/api/competition", "/api/competition/{compId}")
                                 .permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
 
