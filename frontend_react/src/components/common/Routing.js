@@ -3,11 +3,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import App from "../../App.js";
 import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
-import Home from "../../Pages/Home.js";
-import Competition from "../../Pages/Competition.js";
-import Login from "../User/Login.js";
-import Join from "../User/Join.js";
-import StudyBoard from "../../Pages/StudyBoard.js";
+import Home from "../../pages_tmp/Home.js";
+import Competition from "../../pages_tmp/Competition.js";
+import Login from "../user_tmp/Login.js";
+import Join from "../user_tmp/Join.js";
+import StudyBoard from "../../pages_tmp/StudyBoard.js";
 function Routing() {
   return (
     <Switch>
