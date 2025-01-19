@@ -10,7 +10,7 @@ export const createStudy = (data) => {
 };
 
 export const readStudy = (headers) => {
-  console.log("채팅방리스트읽기 api!");
+  console.log("채팅방리스트읽기 api!", headers);
   return studyApi.get("", headers);
 };
 
