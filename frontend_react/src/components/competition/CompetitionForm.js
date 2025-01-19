@@ -27,7 +27,7 @@ const CompetitionForm = ({ selectedCompetition, onClose, onSubmit }) => {
       //   alert("userId가 없음으로 로그인 후 이용하세요!");
       //   return; // 이후 코드를 실행하지 않음
       // }
-
+      
       if (selectedCompetition) {
         //const userId = selectedCompetition.userId; // 선택된 공모전에서 userId를 가져옴
         await updateCompetition(selectedCompetition.compId, {

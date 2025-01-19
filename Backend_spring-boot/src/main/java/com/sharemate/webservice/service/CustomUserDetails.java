@@ -7,15 +7,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.sharemate.webservice.domain.UserEntity;
+import lombok.RequiredArgsConstructor;
 
-//@RequiredArgsConstructor
-public class CustomUserDetails implements UserDetails {
-
+@RequiredArgsConstructor
+public class CustomUserDetails implements UserDetails{
+    
     private final UserEntity userEntity;
-
-    public CustomUserDetails(UserEntity userEntity) {
-        this.userEntity = userEntity;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -39,14 +36,15 @@ public class CustomUserDetails implements UserDetails {
         return userEntity.getUserPassword();
     }
 
+    @Override
+    public String getUsername() {
+        return userEntity.getUserId();
+    }
+  
     public String getUserId() {
         return userEntity.getUserId();
     }
 
-    @Override
-    public String getUsername() {
-        return userEntity.getUserName();
-    }
 
     @Override
     public boolean isAccountNonExpired() {

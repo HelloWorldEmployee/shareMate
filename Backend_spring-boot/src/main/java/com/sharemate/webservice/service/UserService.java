@@ -11,7 +11,7 @@ import com.sharemate.webservice.domain.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor // final 생성자 자동생성 -> autowired 필요없음
+@RequiredArgsConstructor //final 생성자 자동생성 -> autowired 필요없음
 @Service
 public class UserService {
 
@@ -19,7 +19,7 @@ public class UserService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Transactional // 트랜잭션 관리
+    @Transactional //트랜잭션 관리 
     public UserEntity userCreate(UserEntity user) {
         System.out.println("user : " + user);
         user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
@@ -37,7 +37,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    @Transactional // 업데이트로 Role규정
+    @Transactional //업데이트로 Role규정 
     public UserEntity userUpdate(String id, UserEntity user) {
         // 더티채킹
         UserEntity userData = userRepository.findById(id)

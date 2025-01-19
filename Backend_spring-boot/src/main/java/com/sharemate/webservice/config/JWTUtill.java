@@ -13,41 +13,31 @@ import io.jsonwebtoken.Jwts;
 
 @Component
 public class JWTUtill {
-
     private SecretKey secretKey;
 
-    public JWTUtill(@Value("${spring.jwt.secret}") String secret) {
-
-        secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8),
-                Jwts.SIG.HS256.key().build().getAlgorithm());
+    public JWTUtill(@Value("${spring.jwt.secret}")String secret) {
+        secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), Jwts.SIG.HS256.key().build().getAlgorithm());
     }
 
     public String getUserId(String token) {
-
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("userId",
-                String.class);
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("userId", String.class);
     }
 
     public String getRole(String token) {
-
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("userRole",
-                String.class);
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("userRole", String.class);
     }
 
     public Boolean isExpired(String token) {
-
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration()
-                .before(new Date());
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getExpiration().before(new Date());
     }
 
-    public String createJwt(String userId, String role, Long expiredMs) {
+    public String createJwt(String userId, String userRole, Long expiredMs) {
+        return Jwts.builder().claim("userId", userId)
+                             .claim("userRole", userRole)
+                             .issuedAt(new Date(System.currentTimeMillis()))
+                             .expiration(new Date(System.currentTimeMillis() + expiredMs))
+                             .signWith(secretKey)
+                             .compact();
 
-        return Jwts.builder()
-                .claim("userId", userId)
-                .claim("userRole", role)
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiredMs))
-                .signWith(secretKey)
-                .compact();
     }
 }
