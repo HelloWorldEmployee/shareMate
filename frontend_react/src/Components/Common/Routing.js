@@ -17,7 +17,7 @@ function Routing() {
       <Route path="/home" exact component={Home} />
       <Route path="/competition" exact component={Competition} />
       <Route path="/competition-form" component={CompForm} />
-      <Route path="/competition/compId" component={CompDetail} />
+      <Route path="/competition/:compId" component={CompDetail} />
       <Route path="/login" exact component={Login}></Route>
       <Route path="/join" exact component={Join} />
     </Switch>

@@ -6,6 +6,8 @@ const CompDetail = () => {
   const { compId } = useParams(); // URL 파라미터에서 compId 가져오기
   const [competition, setCompetition] = useState(null);
 
+  console.log("compId:", compId);
+
   useEffect(() => {
     const loadCompetition = async (compId) => {
       try {
@@ -28,8 +30,7 @@ const CompDetail = () => {
           setCompetition(competition.compTitle);
         }}
       </h2>
-      <p>작성자: {competition.userId}</p>
-      <p>내용: {competition.content}</p>
+      <p>내용: {competition.comp_content}</p>
       {/* 추가 정보 출력 가능 */}
     </div>
   );

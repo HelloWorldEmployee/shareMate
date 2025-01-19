@@ -8,6 +8,7 @@ import {
   fetchCompetitions,
 } from "../../api/CompetitionApi";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import CompDetail from "../../pages/CompDetail";
 
 const CompList = () => {
   const history = useHistory();
@@ -50,9 +51,10 @@ const CompList = () => {
   const compView = async (compId) => {
     const response = await fetchCompetitionByCompId(compId); // API 호출
     console.log("response : ", response);
-
+    console.log("compId", compId);
     // 상세 페이지로 이동
-    history.push(`/competition/${compId}`); // 상세 페이지로 이동
+    //history.push(`/competition/${compId}`); // 상세 페이지로 이동
+    window.location.href = `/competition/{compId}`;
   };
 
   return (
@@ -73,6 +75,7 @@ const CompList = () => {
               key={comp.compId}
               onClick={() => {
                 compView(comp.compId);
+                //<CompDetail competit/>
               }}
             >
               <td>{comp.compId}</td>
