@@ -25,15 +25,15 @@ public class JWTFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         System.out.println("=== Request Headers ===");
         Enumeration<String> headerNames = request.getHeaderNames();
         while (headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
             System.out.println(headerName + ": " + request.getHeader(headerName));
         }
-        
-        
+
         String authorization = request.getHeader("Authorization");
         System.out.println("authorization : " + authorization);
         if (authorization == null || !authorization.startsWith("Bearer ")) {
@@ -63,7 +63,9 @@ public class JWTFilter extends OncePerRequestFilter {
         System.out.println("유저 엔티티 JWT fIlter 생성 : " + userEntity);
         CustomUserDetails customUserDetails = new CustomUserDetails(userEntity);
 
-        Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
+        Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null,
+                customUserDetails.getAuthorities());
+
         System.out.println("authToken : " + authToken);
         SecurityContextHolder.getContext().setAuthentication(authToken);
 

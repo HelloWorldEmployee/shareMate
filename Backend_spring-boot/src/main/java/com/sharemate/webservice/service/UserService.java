@@ -39,7 +39,7 @@ public class UserService {
 
     @Transactional //업데이트로 Role규정 
     public UserEntity userUpdate(String id, UserEntity user) {
-        //더티채킹
+        // 더티채킹
         UserEntity userData = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("'id'를 확인해주세요!"));
         userData.setUserEmail(user.getUserEmail());

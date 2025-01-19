@@ -22,13 +22,14 @@ public class CompetitionEntity {
     @Column(name = "comp_id")
     private int compId;
 
-    private String comp_title;
+    @Column(name = "comp_title")
+    private String compTitle;
 
     @Lob
     private String comp_content;
 
     @Column(name = "user_id")
     private String userId;
-  
+
     private int count;
 }

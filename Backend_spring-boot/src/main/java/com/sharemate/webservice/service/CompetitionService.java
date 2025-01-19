@@ -1,15 +1,19 @@
 package com.sharemate.webservice.service;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sharemate.webservice.domain.CompetitionEntity;
 import com.sharemate.webservice.domain.CompetitionRepository;
+import com.sharemate.webservice.service.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,8 +24,22 @@ public class CompetitionService {
     @Autowired
     private final CompetitionRepository competitionRespository;
 
+    // Authentication 객체를 사용하여 userId 추출
+    private String authUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+        String userId = customUserDetails.getUserId();
+
+        return userId;
+    }
+
     @Transactional // 트랜잭션 관리
     public CompetitionEntity competitionCreate(CompetitionEntity competition) {
+
+        String userId = authUserId();
+        System.out.println(">> authUserId 메소드 : " + userId);
+
+        competition.setUserId(userId);
         return competitionRespository.save(competition);
     }
 
@@ -31,18 +49,26 @@ public class CompetitionService {
     }
 
     @Transactional
-    public CompetitionEntity competitionUpdate(String userId, CompetitionEntity competition) {
-        // CompetitionEntity compData = competitionRespository.findByCompId(comp_id)
-        // .orElseThrow(() -> new IllegalArgumentException("작성한 'id'만 수정 가능합니다."));
-        List<CompetitionEntity> competitionList = new ArrayList<>();
-        CompetitionEntity compData = competitionList.stream()
-                .filter(c -> c.getUserId().equals(userId))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("작성한 'id'만 수정 가능합니다."));
-        compData.setComp_title(competition.getComp_title());
-        compData.setComp_content(competition.getComp_content());
+    public CompetitionEntity searchCompetition(int compId) {
+        return competitionRespository.findByCompId(compId);
+    }
 
-        return compData;
+    @Transactional
+    public CompetitionEntity competitionUpdate(int compId, CompetitionEntity competition) {
+
+        // compId에 해당하는 CompetitionEntity를 데이터베이스에서 조회
+        CompetitionEntity compData = competitionRespository.findByCompId(compId);
+
+        // 수정할 필드가 null이 아닐 경우 업데이트
+        if (competition.getCompTitle() != null && !competition.getCompTitle().isEmpty()) {
+            compData.setCompTitle(competition.getCompTitle());
+        }
+        if (competition.getComp_content() != null && !competition.getComp_content().isEmpty()) {
+            compData.setComp_content(competition.getComp_content());
+        }
+
+        // 업데이트된 CompetitionEntity 반환
+        return competitionRespository.save(compData);
     }
 
     @Transactional
