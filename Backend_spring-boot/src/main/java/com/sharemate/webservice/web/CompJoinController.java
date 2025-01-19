@@ -1,7 +1,5 @@
 package com.sharemate.webservice.web;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sharemate.webservice.domain.CompJoinEntity;
 import com.sharemate.webservice.domain.CompJoinRepository;
-import com.sharemate.webservice.domain.CustomUserDetails;
 import com.sharemate.webservice.service.CompJoinService;
+import com.sharemate.webservice.service.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 

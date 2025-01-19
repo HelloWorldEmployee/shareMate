@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sharemate.webservice.domain.CompJoinEntity;
 import com.sharemate.webservice.domain.CompJoinRepository;
 import com.sharemate.webservice.domain.CompetitionEntity;
-import com.sharemate.webservice.domain.CustomUserDetails;
+import com.sharemate.webservice.service.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 

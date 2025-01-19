@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Row, Col, Button, ButtonGroup } from "react-bootstrap";
-import { deleteStudy, readStudy } from "../../Api/StudyApi";
+import { deleteStudy, readStudy } from "../../api/StudyApi";
 import UpdateStudyChat from "./UpdateStudyChat";
 
 const ChatCardBox = () => {

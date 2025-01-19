@@ -9,6 +9,7 @@ import Login from "../user/Login.js";
 import CompForm from "../competition/CompForm.js";
 import Competition from "../../pages/Competition.js";
 import CompDetail from "../../pages/CompDetail.js";
+import StudyBoard from "../../pages/StudyBoard.js";
 
 function Routing() {
   return (

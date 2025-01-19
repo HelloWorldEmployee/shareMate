@@ -1,10 +1,12 @@
-package com.sharemate.webservice.domain;
+package com.sharemate.webservice.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.sharemate.webservice.domain.UserEntity;
 
 //@RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {

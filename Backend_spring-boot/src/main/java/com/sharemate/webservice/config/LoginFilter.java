@@ -13,8 +13,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sharemate.webservice.domain.CustomUserDetails;
 import com.sharemate.webservice.domain.UserEntity;
+import com.sharemate.webservice.service.CustomUserDetails;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;

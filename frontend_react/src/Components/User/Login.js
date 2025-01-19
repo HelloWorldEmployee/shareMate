@@ -22,7 +22,7 @@ const Login = (props) => {
       const token = response.headers["authorization"].replace("Bearer ", "");
       console.log("로그인성공", token);
       localStorage.setItem("token", token);
-      //props.history.push("/studyBoard");
+      props.history.push("/studyBoard");
     } catch (error) {
       console.log("로그인 실패 : ", error);
     }

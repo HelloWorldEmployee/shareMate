@@ -22,10 +22,8 @@ public class UserService {
     @Transactional // 트랜잭션 관리
     public UserEntity userCreate(UserEntity user) {
         System.out.println("user : " + user);
-
         user.setUserPassword(bCryptPasswordEncoder.encode(user.getUserPassword()));
         user.setUserRole("ROLE_USER");
-
         return userRepository.save(user);
     }
 
@@ -44,15 +42,8 @@ public class UserService {
         // 더티채킹
         UserEntity userData = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("'id'를 확인해주세요!"));
-        if (user.getUserName() != null && !user.getUserName().isEmpty()) {
-            userData.setUserName(user.getUserName());
-        }
-        if (user.getUserEmail() != null && !user.getUserEmail().isEmpty()) {
-            userData.setUserEmail(user.getUserEmail());
-        }
-        if (user.getUserRole() != null && !user.getUserRole().isEmpty()) {
-            userData.setUserRole(user.getUserRole());
-        }
+        userData.setUserEmail(user.getUserEmail());
+        // userData.setUserEmail(user.getUserEmail());
 
         return userData;
     }

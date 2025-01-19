@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { createStudy } from "../../Api/StudyApi";
+import { createStudy } from "../../api/StudyApi";
 
 const CreateStudyChat = (props) => {
   const [study, setStudy] = useState({
