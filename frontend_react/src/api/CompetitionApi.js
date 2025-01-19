@@ -1,4 +1,3 @@
-import axios from "axios";
 import { competitionApi } from "./ApiInterceptor";
 
 // const BASE_URL = "http://localhost:8080/api/competition"; // 백엔드 API URL

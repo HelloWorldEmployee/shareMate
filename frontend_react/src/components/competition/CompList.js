@@ -48,13 +48,10 @@ const CompList = () => {
     setCurrentPage(pageNumber);
   };
 
-  const compView = async (compId) => {
-    const response = await fetchCompetitionByCompId(compId); // API 호출
-    console.log("response : ", response);
-    console.log("compId", compId);
+  const compView = (compId) => {
     // 상세 페이지로 이동
-    //history.push(`/competition/${compId}`); // 상세 페이지로 이동
-    window.location.href = `/competition/{compId}`;
+    //window.location.href = `/competition/${compId}`;
+    history.push(`../competition/${compId}`); // 상세 페이지로 이동
   };
 
   return (

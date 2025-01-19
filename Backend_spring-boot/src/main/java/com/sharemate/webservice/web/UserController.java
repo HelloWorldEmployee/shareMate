@@ -1,6 +1,5 @@
 package com.sharemate.webservice.web;
 
-import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,10 +16,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sharemate.webservice.domain.UserEntity;
-import com.sharemate.webservice.domain.UserRepository;
 
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000") // cors 회피
@@ -29,7 +26,6 @@ import com.sharemate.webservice.domain.UserRepository;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
     // 회원가입
 

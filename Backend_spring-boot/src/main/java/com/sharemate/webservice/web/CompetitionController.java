@@ -31,7 +31,6 @@ public class CompetitionController {
 
     @PostMapping("/api/competition")
     public ResponseEntity<?> save(@RequestBody CompetitionEntity competition) {
-        System.out.println(">> save competiton:" + competition);
 
         return new ResponseEntity<>(competitionService.competitionCreate(competition), HttpStatus.CREATED);
     }
