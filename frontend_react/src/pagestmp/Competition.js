@@ -1,6 +1,6 @@
 import { Button, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CompList from "../components/competition/CompList";
+import CompList from "../componentstmp/competitiontmp/CompList";
 
 function Competition() {
   return (

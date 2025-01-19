@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { updateStudy } from "../../api/StudyApi";
+import { updateStudy } from "../../apitmp/StudyApi";
 
 const UpdateStudyChat = ({ study }) => {
   console.log(study);

@@ -6,9 +6,9 @@ import Pagination from "react-bootstrap/Pagination";
 import {
   fetchCompetitionByCompId,
   fetchCompetitions,
-} from "../../api/CompetitionApi";
+} from "../../apitmp/CompetitionApi";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import CompDetail from "../../pages/CompDetail";
+import CompDetail from "../../pagestmp/CompDetail";
 
 const CompList = () => {
   const history = useHistory();

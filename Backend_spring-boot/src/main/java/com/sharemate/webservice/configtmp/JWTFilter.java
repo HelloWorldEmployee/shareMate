@@ -1,4 +1,4 @@
-package com.sharemate.webservice.config;
+package com.sharemate.webservice.configtmp;
 
 import java.io.IOException;
 import java.util.Enumeration;
