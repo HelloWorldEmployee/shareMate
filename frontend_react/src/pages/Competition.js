@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CompetitionList from "../components/competition/CompetitionList";
 import CompetitionForm from "../components/competition/CompetitionForm";
-import { fetchCompetitions } from "../api/api";
+import { fetchCompetitions } from "../api/CompetitionApi";
 
 function Competition() {
   const [competitions, setCompetitions] = useState([]); // 공모전 목록 상태 추가
