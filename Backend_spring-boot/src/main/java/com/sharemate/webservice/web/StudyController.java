@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class StudyController {
+
     private final StudyService studyService;
 
     @CrossOrigin
