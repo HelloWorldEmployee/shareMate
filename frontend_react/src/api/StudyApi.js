@@ -9,9 +9,9 @@ export const createStudy = (data) => {
   return studyApi.post("", data);
 };
 
-export const readStudy = (headers) => {
-  console.log("채팅방리스트읽기 api!", headers);
-  return studyApi.get("", headers);
+export const readStudy = () => {
+  console.log("채팅방리스트읽기 api!");
+  return studyApi.get();
 };
 
 export const updateStudy = (StudyId, data) => {
