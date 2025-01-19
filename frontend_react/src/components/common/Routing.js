@@ -6,10 +6,10 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Home from "../../pages/Home.js";
 import Join from "../user/Join.js";
 import Login from "../user/Login.js";
-import CompForm from "../competition/CompForm.js";
 import Competition from "../../pages/Competition.js";
 import CompDetail from "../../pages/CompDetail.js";
 import StudyBoard from "../../pages/StudyBoard.js";
+import CompForm from "../competition/CompForm.js";
 
 function Routing() {
   return (

@@ -32,7 +32,6 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-
     @PostMapping("/api/user")
     public ResponseEntity<?> save(@RequestBody UserEntity user) {
         System.out.println("회원가입 api 불러오기 성공!");
@@ -55,7 +54,6 @@ public class UserController {
     // System.out.println("로그인 : " + userEntity);
     // return ResponseEntity.ok("로그인 성공");
     // }
-
     // 계정 전체조회
     @GetMapping("/api/user")
     public ResponseEntity<?> findAll() {
