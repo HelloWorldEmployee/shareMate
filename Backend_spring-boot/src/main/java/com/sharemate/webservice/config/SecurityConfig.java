@@ -77,7 +77,7 @@ public class SecurityConfig {
                 .httpBasic((auth) -> auth.disable());
         //경로 인가 작업
         http
-                .authorizeHttpRequests((auth) -> auth            
+                .authorizeHttpRequests((auth) -> auth
                 .requestMatchers("/api/user/login", "/", "/api/user",
                                                 "/api/user/{userId}", "/api/user/{userId}/{userPassword}",
                                                 "/api/competition", "/api/competition/{compId}")
@@ -94,7 +94,6 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.DELETE, "/api/compJoin/{compId}/{userId}").hasRole("USER")
                 .anyRequest().authenticated());
                 
-                );
         //JWT FIlter
         http
                 .addFilterBefore(new JWTFilter(jwtUtill), LoginFilter.class);

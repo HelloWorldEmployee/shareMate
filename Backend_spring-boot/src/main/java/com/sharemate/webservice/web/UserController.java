@@ -32,7 +32,7 @@ public class UserController {
     private final UserRepository userRepository;
 
     // 회원가입
-
+    
     @PostMapping("/api/user")
     public ResponseEntity<?> save(@RequestBody UserEntity user) {
         System.out.println("회원가입 api 불러오기 성공!");
