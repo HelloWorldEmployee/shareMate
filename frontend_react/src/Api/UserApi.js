@@ -15,7 +15,6 @@ export const checkLoginUser = (userId, userPassword) => {
   const formData = new FormData();
   formData.append("userId", userId);
   formData.append("userPassword", userPassword);
-  console.log(">>formData : ", formData);
   return axios.post(`${BASE_URL}/login`, formData);
 };
 
