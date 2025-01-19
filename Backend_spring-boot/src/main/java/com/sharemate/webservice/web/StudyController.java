@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sharemate.webservice.domain.StudyEntity;
@@ -20,8 +19,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api") // 공통 경로 설정
 public class StudyController {
+
     private final StudyService studyService;
 
     @CrossOrigin
