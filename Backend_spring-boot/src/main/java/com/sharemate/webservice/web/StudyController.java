@@ -48,8 +48,10 @@ public class StudyController {
     }
     // @CrossOrigin
     // @DeleteMapping("/api/study/{id}/{user_id}")
-    // public ResponseEntity<?> delete(@PathVariable int id, @PathVariable String user_id) {
-    //     return new ResponseEntity<>(studyService.studyDelete(id, user_id), HttpStatus.OK);
+    // public ResponseEntity<?> delete(@PathVariable int id, @PathVariable String
+    // user_id) {
+    // return new ResponseEntity<>(studyService.studyDelete(id, user_id),
+    // HttpStatus.OK);
     // }
 
 }

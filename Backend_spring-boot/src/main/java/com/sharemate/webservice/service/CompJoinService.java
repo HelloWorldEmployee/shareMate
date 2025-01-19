@@ -3,17 +3,11 @@ package com.sharemate.webservice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sharemate.webservice.domain.CompJoinEntity;
 import com.sharemate.webservice.domain.CompJoinRepository;
-import com.sharemate.webservice.domain.CompetitionEntity;
-import com.sharemate.webservice.service.CustomUserDetails;
 
 import lombok.RequiredArgsConstructor;
 

@@ -9,6 +9,7 @@ import Login from "../user/Login.js";
 import Competition from "../../pages/Competition.js";
 import CompDetail from "../../pages/CompDetail.js";
 import StudyBoard from "../../pages/StudyBoard.js";
+import CompUpdateForm from "../competition/CompUpdateForm.js";
 import CompForm from "../competition/CompForm.js";
 
 function Routing() {
@@ -19,6 +20,10 @@ function Routing() {
       <Route path="/competition" exact component={Competition} />
       <Route path="/competition-form" component={CompForm} />
       <Route path="/competition/:compId" component={CompDetail} />
+      <Route
+        path="/competition-updateForm/:compId"
+        component={CompUpdateForm}
+      />
       <Route path="/login" exact component={Login}></Route>
       <Route path="/join" exact component={Join} />
       <Route path="/studyBoard" exact component={StudyBoard}></Route>
