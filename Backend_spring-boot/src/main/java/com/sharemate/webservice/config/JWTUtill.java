@@ -30,7 +30,7 @@ public class JWTUtill {
 
     public String getRole(String token) {
 
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("user_role",
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("userRole",
                 String.class);
     }
 
@@ -44,7 +44,7 @@ public class JWTUtill {
 
         return Jwts.builder()
                 .claim("userId", userId)
-                .claim("user_role", role)
+                .claim("userRole", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiredMs))
                 .signWith(secretKey)
