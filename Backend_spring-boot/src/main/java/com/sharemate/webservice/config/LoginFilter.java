@@ -34,6 +34,16 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
+            // // JSON 요청 본문을 파싱(Postman 요청 본문에서 JSON 데이터를 직접 파싱)
+            // ObjectMapper objectMapper = new ObjectMapper();
+            // UserEntity user = objectMapper.readValue(request.getInputStream(),
+            // UserEntity.class);
+
+            // 클라이언트 요청에서 username, password 추출
+            // String userId = user.getUserId();
+            // System.out.println("userId : " + userId);
+            // String userPassword = user.getUserPassword();
+            // System.out.println("userPassword : " + userPassword);
             // String userId = obtainUsername(request);
             // String userPassword = obtainPassword(request);
             String userId = request.getParameter("userId");
@@ -76,4 +86,5 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         System.out.println("Fail");
         response.setStatus(401);
     }
+
 }

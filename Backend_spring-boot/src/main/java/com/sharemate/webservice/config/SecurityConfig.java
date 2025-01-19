@@ -78,12 +78,22 @@ public class SecurityConfig {
         //경로 인가 작업
         http
                 .authorizeHttpRequests((auth) -> auth
-                .requestMatchers("/api/user/login", "/", "/api/user/{id}").permitAll()
-                .requestMatchers("/api/study").hasRole("USER") //이면 접두사 Role_ 필요
-                .requestMatchers("/api/competition").hasRole("USER")
-                .requestMatchers(HttpMethod.POST, "/api/user").permitAll()
-                .anyRequest().authenticated()
-                );
+                .requestMatchers("/api/user/login", "/", "/api/user",
+                        "/api/user/{userId}", "/api/user/{userId}/{userPassword}",
+                        "/api/competition", "/api/competition/{compId}")
+                .permitAll()
+                .requestMatchers("/api/study").hasRole("USER") // 이면 접두사 Role_ 필요
+
+                // .requestMatchers(HttpMethod.POST, "/api/competition").hasRole("ADMIN")
+                // .requestMatchers(HttpMethod.PUT,
+                // "/api/competition/{compId}").hasRole("ADMIN")
+                // .requestMatchers(HttpMethod.DELETE,
+                // "/api/competition/{compId}").hasRole("ADMIN")
+
+                .requestMatchers(HttpMethod.POST, "/api/compJoin/{compId}").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, "/api/compJoin/{compId}/{userId}").hasRole("USER")
+                .anyRequest().authenticated());
+
         //JWT FIlter
         http
                 .addFilterBefore(new JWTFilter(jwtUtill), LoginFilter.class);
