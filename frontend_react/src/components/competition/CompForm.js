@@ -11,16 +11,16 @@ function CompForm() {
     e.preventDefault();
 
     // 폼 데이터 수집
-    const title = e.target[0].value; // 제목
-    const content = e.target[1].value; // 내용
-    console.log("title :", title, "content : ", content);
+    const compTitle = e.target[0].value; // 제목
+    const comp_content = e.target[1].value; // 내용
+    console.log("compTitle :", compTitle, "comp_content : ", comp_content);
 
     try {
-      const response = await createCompetition({ title, content });
+      const response = await createCompetition({ compTitle, comp_content });
       console.log(response.data); // 데이터 구조 확인
 
       // 성공적으로 게시글이 생성되면 competition 페이지로 이동
-      if (response.status === 200) {
+      if (response.status === 201) {
         // 상태 코드 확인
         history.push("/competition"); // competition 페이지로 이동
       }
