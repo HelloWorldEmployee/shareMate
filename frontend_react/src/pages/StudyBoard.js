@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
-import ChatCardBox from "../componentstmp/studytmp/ChatCardBox";
-import CreateStudyChat from "../componentstmp/studytmp/CreateStudyChat";
+import ChatCardBox from "../components/studytmp/ChatCardBox";
+import CreateStudyChat from "../components/studytmp/CreateStudyChat";
 
 const StudyBoard = () => {
   const [showCreateChat, setshowCreateChat] = useState(false);

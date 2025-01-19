@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // useParams 훅 import
-import { fetchCompetitionByCompId } from "../apitmp/CompetitionApi";
+import { fetchCompetitionByCompId } from "../api/CompetitionApi";
 
 const CompDetail = () => {
   const { compId } = useParams(); // URL 파라미터에서 compId 가져오기

@@ -1,4 +1,4 @@
-package com.sharemate.webservice.configtmp;
+package com.sharemate.webservice.config;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;

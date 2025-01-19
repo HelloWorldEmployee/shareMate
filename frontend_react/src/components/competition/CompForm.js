@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { createCompetition } from "../../apitmp/CompetitionApi";
+import { createCompetition } from "../../api/CompetitionApi";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function CompForm() {

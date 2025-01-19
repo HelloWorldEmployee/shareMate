@@ -1,4 +1,4 @@
-package com.sharemate.webservice.configtmp;
+package com.sharemate.webservice.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
