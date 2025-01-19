@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
 
-
 @Component
 public class JWTUtill {
     private SecretKey secretKey;
@@ -39,5 +38,6 @@ public class JWTUtill {
                              .expiration(new Date(System.currentTimeMillis() + expiredMs))
                              .signWith(secretKey)
                              .compact();
+
     }
 }
