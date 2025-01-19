@@ -18,10 +18,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class JWTFilter extends OncePerRequestFilter {
 
-    private final JWTUtil jwtUtil;
+    private final JWTUtill jwtUtill;
 
-    public JWTFilter(JWTUtil jwtUtil) {
-        this.jwtUtil = jwtUtil;
+    public JWTFilter(JWTUtill jwtUtill) {
+        this.jwtUtill = jwtUtill;
     }
 
     @Override
@@ -47,14 +47,14 @@ public class JWTFilter extends OncePerRequestFilter {
         String token = authorization.split(" ")[1];
         System.out.println("token : " + token);
 
-        if (jwtUtil.isExpired(token)) {
+        if (jwtUtill.isExpired(token)) {
             System.out.println("token expired");
             filterChain.doFilter(request, response);
             return;
         }
 
-        String userId = jwtUtil.getUserId(token);
-        String userRole = jwtUtil.getRole(token);
+        String userId = jwtUtill.getUserId(token);
+        String userRole = jwtUtill.getRole(token);
 
         UserEntity userEntity = new UserEntity();
         userEntity.setUserId(userId);

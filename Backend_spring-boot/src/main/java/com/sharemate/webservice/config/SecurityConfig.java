@@ -21,12 +21,12 @@ public class SecurityConfig {
 
         // AuthenticationManager가 인자로 받을 AuthenticationConfiguration 객체 생성자 주입
         private final AuthenticationConfiguration authenticationConfiguration;
-        private final JWTUtil jwtUtil;
+        private final JWTUtill jwtUtill;
 
         // AuthenticationManger가 인자로 받을 AuthenticationConfiguration 객체 생성자 주입
-        public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtil jwtUtil) {
+        public SecurityConfig(AuthenticationConfiguration authenticationConfiguration, JWTUtill jwtUtill) {
                 this.authenticationConfiguration = authenticationConfiguration;
-                this.jwtUtil = jwtUtil;
+                this.jwtUtill = jwtUtill;
         }
 
         // AuthenticationManager Bean 등록
@@ -79,11 +79,11 @@ public class SecurityConfig {
 
                 // JWT FIlter
                 http
-                                .addFilterBefore(new JWTFilter(jwtUtil), LoginFilter.class);
+                                .addFilterBefore(new JWTFilter(jwtUtill), LoginFilter.class);
                 // 커스텀 로그인 필터
                 http
                                 .addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),
-                                                jwtUtil),
+                                                jwtUtill),
                                                 UsernamePasswordAuthenticationFilter.class);
                 // 세션 설정(jwt로 로그인)
                 http

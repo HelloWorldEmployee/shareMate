@@ -23,11 +23,11 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         private final AuthenticationManager authenticationManager;
-        private final JWTUtil jwtUtil;
+        private final JWTUtill jwtUtill;
 
-        public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
+        public LoginFilter(AuthenticationManager authenticationManager, JWTUtill jwtUtill) {
                 this.authenticationManager = authenticationManager;
-                this.jwtUtil = jwtUtil;
+                this.jwtUtill = jwtUtill;
 
                 // 로그인 url 특정
                 setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/user/login", "POST"));
@@ -83,7 +83,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
                 String role = auth.getAuthority();
 
-                String token = jwtUtil.createJwt(userId, role, 60 * 60 * 10L);
+                String token = jwtUtill.createJwt(userId, role, 60 * 60 * 10L);
 
                 response.addHeader("Authorization", "Bearer " + token);
         }
