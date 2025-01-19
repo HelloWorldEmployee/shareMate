@@ -44,6 +44,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             // System.out.println("userId : " + userId);
             // String userPassword = user.getUserPassword();
             // System.out.println("userPassword : " + userPassword);
+
             // String userId = obtainUsername(request);
             // String userPassword = obtainPassword(request);
             String userId = request.getParameter("userId");

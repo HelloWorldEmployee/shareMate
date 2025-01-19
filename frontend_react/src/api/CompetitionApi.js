@@ -12,6 +12,7 @@ export const fetchCompetitionByCompId = (compId) => {
 };
 
 export const createCompetition = (data) => {
+  console.log(">> createCompetition data:", data);
   return competitionApi.post("", data);
 };
 
