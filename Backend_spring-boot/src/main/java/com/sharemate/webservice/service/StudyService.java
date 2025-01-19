@@ -47,8 +47,14 @@ public class StudyService {
     // }
 
     @Transactional
-    public String studyDelete(int id, String user_id) {
-        studyRepository.deleteByStudyIdAndUserId(id, user_id);
+    public String studyDelete(int id) {
+        studyRepository.deleteById(id);
         return "success delete";
     }
+
+    // @Transactional
+    // public String studyDelete(int id, String user_id) {
+    //     studyRepository.deleteByStudyIdAndUserId(id, user_id);
+    //     return "success delete";
+    // }
 }

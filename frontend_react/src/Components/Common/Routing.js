@@ -20,6 +20,7 @@ function Routing() {
       <Route path="/competition/:compId" component={CompDetail} />
       <Route path="/login" exact component={Login}></Route>
       <Route path="/join" exact component={Join} />
+      <Route path="/studyBoard" exact component={StudyBoard}></Route>
     </Switch>
   );
 }
