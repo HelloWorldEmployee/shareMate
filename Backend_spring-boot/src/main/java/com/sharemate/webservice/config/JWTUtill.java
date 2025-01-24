@@ -13,9 +13,10 @@ import io.jsonwebtoken.Jwts;
 
 @Component
 public class JWTUtill {
+
     private SecretKey secretKey;
 
-    public JWTUtill(@Value("${spring.jwt.secret}")String secret) {
+    public JWTUtill(@Value("${spring.jwt.secret}") String secret) {
         secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), Jwts.SIG.HS256.key().build().getAlgorithm());
     }
 
@@ -33,11 +34,11 @@ public class JWTUtill {
 
     public String createJwt(String userId, String userRole, Long expiredMs) {
         return Jwts.builder().claim("userId", userId)
-                             .claim("userRole", userRole)
-                             .issuedAt(new Date(System.currentTimeMillis()))
-                             .expiration(new Date(System.currentTimeMillis() + expiredMs))
-                             .signWith(secretKey)
-                             .compact();
+                .claim("userRole", userRole)
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + expiredMs))
+                .signWith(secretKey)
+                .compact();
 
     }
 }
