@@ -8,7 +8,7 @@ import {
   fetchCompetitions,
 } from "../../api/CompetitionApi";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import CompDetail from "../../pages/CompDetail";
+import CompDetail from "./CompDetail";
 
 const CompList = () => {
   const history = useHistory();

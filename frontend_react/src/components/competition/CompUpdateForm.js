@@ -18,7 +18,7 @@ function CompUpdateForm() {
     const loadCompetition = async () => {
       try {
         const response = await fetchCompetitionByCompId(compId); // API 호출
-        console.log("API 응답:", response); // 응답 확인
+        console.log("fetchCompetitionByCompId API 응답:", response); // 응답 확인
         setCompTitle(response.data.compTitle); // 제목 초기화
         setCompContent(response.data.comp_content); // 내용 초기화
         setCompetition(response.data); // 데이터 저장
@@ -55,16 +55,16 @@ function CompUpdateForm() {
     console.log("handelEdit compId :", compId);
 
     try {
-      const response = await updateCompetition({
-        compId,
-        competition,
+      const response = await updateCompetition(compId, {
+        compTitle,
+        comp_content: compContent,
       });
       console.log(response.data); // 데이터 구조 확인
 
       // 성공적으로 게시글이 생성되면 competition 페이지로 이동
       if (response.status === 200) {
         // 상태 코드 확인
-        history.push(`../competition/${competition.compId}`); // competition 페이지로 이동
+        history.push(`../competition/${compId}`); // competition 페이지로 이동
       }
     } catch (error) {
       console.error("Error creating competition:", error);

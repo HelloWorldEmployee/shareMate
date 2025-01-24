@@ -80,10 +80,10 @@ public class CompJoinController {
     }
 
     // 모든 댓글 전체 조회는 사실상 필요 없음.
-    @GetMapping
-    public ResponseEntity<?> findAll() {
-        return new ResponseEntity<>(compJoinService.compJoinSelect(), HttpStatus.OK);
-    }
+    // @GetMapping
+    // public ResponseEntity<?> findAll() {
+    //     return new ResponseEntity<>(compJoinService.compJoinSelect(), HttpStatus.OK);
+    // }
 
     @DeleteMapping("/{compId}/{userId}")
     public ResponseEntity<?> delete(@PathVariable int compId, @PathVariable String userId) {

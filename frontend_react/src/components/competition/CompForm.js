@@ -13,7 +13,12 @@ function CompForm() {
     // 폼 데이터 수집
     const compTitle = e.target[0].value; // 제목
     const comp_content = e.target[1].value; // 내용
-    console.log("compTitle :", compTitle, "comp_content : ", comp_content);
+    console.log(
+      "CompForm()_handleSubmit compTitle :",
+      compTitle,
+      "comp_content : ",
+      comp_content
+    );
 
     try {
       const response = await createCompetition({ compTitle, comp_content });
@@ -25,7 +30,7 @@ function CompForm() {
         history.push("/competition"); // competition 페이지로 이동
       }
     } catch (error) {
-      console.error("Error creating competition:", error);
+      console.error("CompForm : Error creating competition:", error);
     }
   };
 

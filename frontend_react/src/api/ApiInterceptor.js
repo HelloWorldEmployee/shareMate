@@ -27,6 +27,10 @@ const competitionApi = axios.create({
   baseURL: "http://localhost:8080/api/competition",
 });
 
+const compJoinApi = axios.create({
+  baseURL: "http://localhost:8080/api/compJoin",
+});
+
 studyApi.interceptors.request.use(
   //   (config) => {
   //     if (config.method == 'post') 로 개별 가능
@@ -47,4 +51,9 @@ competitionApi.interceptors.response.use(
   handle401Error
 );
 
-export { studyApi, competitionApi };
+compJoinApi.interceptors.request.use(addAuthHeader, (error) =>
+  Promise.reject(error)
+);
+compJoinApi.interceptors.response.use((response) => response, handle401Error);
+
+export { studyApi, competitionApi, compJoinApi };
