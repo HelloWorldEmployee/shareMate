@@ -10,11 +10,17 @@ const addAuthHeader = (config) => {
   return config;
 };
 
-const handle401Error = (error) => {
-  if (error.response && error.response.state === 401) {
-    localStorage.removeItem("token");
-    alert("세션이 만료되었습니다. 다시 로그인 해주세요!");
-    window.location.href = "/login";
+const handleError = (error) => {
+  if (error.response) {
+    console.error("에러 응답:", error.response);
+    const status = error.response.status;
+    if (status === 401 || status === 403) {
+      localStorage.removeItem("token");
+      alert("세션이 만료되었거나 권한이 없습니다. 다시 로그인 해주세요!");
+      window.location.href = "/login";
+    }
+  } else {
+    console.error("응답이 없는 에러:", error);
   }
   return Promise.reject(error);
 };
@@ -37,14 +43,11 @@ studyApi.interceptors.request.use(
     Promise.reject(error);
   }
 );
-studyApi.interceptors.response.use((response) => response, handle401Error);
+studyApi.interceptors.response.use((response) => response, handleError);
 
 competitionApi.interceptors.request.use(addAuthHeader, (error) =>
   Promise.reject(error)
 );
-competitionApi.interceptors.response.use(
-  (response) => response,
-  handle401Error
-);
+competitionApi.interceptors.response.use((response) => response, handleError);
 
 export { studyApi, competitionApi };
